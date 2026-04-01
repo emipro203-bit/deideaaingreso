@@ -1483,6 +1483,104 @@
     }
     .banner-close:hover { color: #fff; }
 
+    /* ────────────────────────── NAV LINKS ────────────────────────── */
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .nav-link {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255,255,255,0.06); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none;
+      cursor: pointer; padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    /* X when open */
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE MENU DROPDOWN ── */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(10,22,40,0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 499;
+      padding: 1rem 1.25rem 1.5rem;
+      gap: 0.25rem;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .mobile-link {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.85rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-link:last-child { border-bottom: none; }
+    .mobile-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+    .mobile-link-cta {
+      margin-top: 0.5rem;
+      background: var(--orange);
+      color: #fff !important;
+      font-weight: 700;
+      text-align: center;
+      border-bottom: none !important;
+      box-shadow: 0 4px 20px rgba(255,107,53,0.4);
+    }
+    .mobile-link-cta:hover { background: #ff8050; }
+
     /* ────────────────────────── SCROLL REVEAL ────────────────────────── */
 
     .reveal {
@@ -1505,6 +1603,9 @@
     /* ────────────────────────── RESPONSIVE ────────────────────────── */
 
     @media (max-width: 900px) {
+      .nav-links      { display: none; }
+      .hamburger      { display: flex; }
+      .mobile-menu    { display: flex; }
       .hero-inner     { grid-template-columns: 1fr; gap: 2.5rem; }
       .hero-right     { display: flex; align-items: center; justify-content: center; }
       .phone-mockup   { max-width: 400px; width: 100%; margin: 0 auto; }
@@ -1602,8 +1703,32 @@
       <span class="logo-name">de idea a <span>ingreso</span></span>
       <span class="logo-tag">aprende · aplica · crece</span>
     </div>
-    <a href="#unirse" class="nav-cta">Quiero entrar →</a>
+
+    <div class="nav-links">
+      <a href="#problema" class="nav-link">El problema</a>
+      <a href="#programa" class="nav-link">Programa</a>
+      <a href="#incluye" class="nav-link">Qué incluye</a>
+      <a href="#unirse"  class="nav-link">Precio</a>
+      <a href="#faq"     class="nav-link">FAQ</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="#unirse" class="nav-cta">Quiero entrar →</a>
+      <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#problema" class="mobile-link">El problema</a>
+    <a href="#programa" class="mobile-link">Programa</a>
+    <a href="#incluye"  class="mobile-link">Qué incluye</a>
+    <a href="#unirse"   class="mobile-link">Precio</a>
+    <a href="#faq"      class="mobile-link">FAQ</a>
+    <a href="#unirse"   class="mobile-link mobile-link-cta">Quiero entrar →</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero-section">
@@ -1708,7 +1833,7 @@
   </div>
 
   <!-- PAIN -->
-  <div class="pain-section">
+  <div class="pain-section" id="problema">
     <div class="section">
       <p class="section-label reveal">El problema real</p>
       <h2 class="reveal reveal-delay-1">Tienes las mismas herramientas.<br>¿Por qué los resultados<br>son tan diferentes?</h2>
@@ -1770,7 +1895,7 @@
   </div>
 
   <!-- CURRICULUM -->
-  <div class="curriculum-section">
+  <div class="curriculum-section" id="programa">
     <div class="section">
       <p class="section-label reveal">El programa</p>
       <h2 class="reveal reveal-delay-1">4 semanas.<br>Una transformación real.</h2>
@@ -1842,7 +1967,7 @@
   </div>
 
   <!-- INCLUDES -->
-  <div class="includes-section">
+  <div class="includes-section" id="incluye">
     <div class="section">
       <p class="section-label reveal">Lo que incluye</p>
       <h2 class="reveal reveal-delay-1">Todo lo que necesitas para arrancar</h2>
@@ -1982,7 +2107,7 @@
   </div>
 
   <!-- FAQ -->
-  <div class="faq-section">
+  <div class="faq-section" id="faq">
     <div class="section">
       <p class="section-label reveal">Preguntas frecuentes</p>
       <div class="faq-layout">
@@ -2056,6 +2181,24 @@
   </div>
 
   <script>
+    // ── Hamburger menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    mobileMenu.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      });
+    });
+
     // ── Scroll reveal (batched with rAF for smooth 60fps) ──
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
