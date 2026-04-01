@@ -1387,27 +1387,92 @@
     /* ────────────────────────── RESPONSIVE ────────────────────────── */
 
     @media (max-width: 900px) {
-      .hero-inner        { grid-template-columns: 1fr; }
-      .hero-right        { display: none; }
-      .stats-inner       { grid-template-columns: repeat(2, 1fr); }
-      .pain-grid         { grid-template-columns: 1fr; }
-      .weeks             { grid-template-columns: 1fr; }
-      .includes-grid     { grid-template-columns: 1fr; }
-      .forwho-grid       { grid-template-columns: 1fr; }
-      .pricing-layout    { grid-template-columns: 1fr; }
-      .faq-layout        { grid-template-columns: 1fr; gap: 2.5rem; }
-      .faq-left          { position: static; }
+      .hero-inner     { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-right     { display: flex; align-items: center; justify-content: center; }
+      .phone-mockup   { max-width: 400px; width: 100%; margin: 0 auto; }
+      .float-card-row { display: none; }
+      .stats-inner    { grid-template-columns: repeat(2, 1fr); }
+      .stat-num       { font-size: 2.75rem; }
+      .pain-grid      { grid-template-columns: 1fr; }
+      .weeks          { grid-template-columns: 1fr; }
+      .includes-grid  { grid-template-columns: 1fr; }
+      .forwho-grid    { grid-template-columns: 1fr; }
+      .pricing-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .faq-layout     { grid-template-columns: 1fr; gap: 2.5rem; }
+      .faq-left       { position: static; }
     }
 
     @media (max-width: 600px) {
       nav { padding: 0 1rem; }
-      .hero-section { padding: 7rem 1.25rem 4rem; }
-      .section { padding: 4rem 1.25rem; }
-      .stats-inner { grid-template-columns: 1fr 1fr; gap: 1rem; }
-      .forwho-grid { grid-template-columns: 1fr; }
-      .week-card { grid-template-columns: 1fr; gap: 1rem; }
-      .bottom-banner { flex-direction: column; gap: 0.75rem; padding: 1rem 1rem 1.25rem; }
-      .banner-close { top: 0.75rem; }
+      .logo-tag { display: none; }
+
+      /* Hero */
+      .hero-section { padding: 5.5rem 1.25rem 3rem; }
+      .hero h1 { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-badge { font-size: 0.7rem; }
+      .phone-mockup { max-width: 100%; }
+      .msg { font-size: 0.78rem; }
+
+      /* Sections */
+      .section { padding: 3rem 1.25rem; }
+
+      /* Stats */
+      .stats-section { padding: 0 1.25rem; }
+      .stats-inner { grid-template-columns: 1fr 1fr; gap: 0; }
+      .stat-item { padding: 1.75rem 1rem; }
+      .stat-num { font-size: 2.25rem; }
+      .stat-lbl { font-size: 0.75rem; max-width: 110px; }
+
+      /* Pain cards */
+      .pain-card { padding: 1.75rem 1.25rem; }
+      .pain-icon { font-size: 2rem; }
+
+      /* Curriculum */
+      .curriculum-section {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), 0 100%);
+        padding-bottom: calc(3rem + 24px);
+      }
+      .week-card { padding: 1.5rem 1.25rem; }
+      .week-num-badge { font-size: 3rem; }
+
+      /* Includes */
+      .includes-section {
+        margin-top: -24px;
+        clip-path: polygon(0 24px, 100% 0, 100% calc(100% - 24px), 0 100%);
+        padding-top: calc(3rem + 24px);
+        padding-bottom: calc(3rem + 24px);
+      }
+      .inc-card { padding: 1.5rem 1.25rem; }
+      .inc-icon { width: 44px; height: 44px; font-size: 1.2rem; }
+
+      /* ForWho */
+      .forwho-section {
+        margin-top: -24px;
+        clip-path: polygon(0 24px, 100% 0, 100% 100%, 0 100%);
+        padding-top: calc(3rem + 24px);
+      }
+      .forwho-card { padding: 1.5rem 1.25rem; gap: 1rem; }
+      .fw-ico { width: 44px; height: 44px; font-size: 1.4rem; }
+
+      /* Pricing */
+      .pricing-card { padding: 1.75rem 1.25rem; }
+      .price-big { font-size: 3.75rem; }
+      .roi-block { padding: 1.25rem; }
+      .roi-num { font-size: 1.75rem; }
+
+      /* FAQ */
+      .summary { padding: 1.1rem 1.25rem; font-size: 0.88rem; }
+      details p { padding: 0 1.25rem 1.1rem; font-size: 0.85rem; }
+      .faq-cta-small { font-size: 0.85rem; padding: 0.85rem 1.25rem; }
+
+      /* Final CTA */
+      .final-section { padding: 5rem 1.25rem; }
+
+      /* Bottom banner */
+      .bottom-banner { flex-direction: column; gap: 0.5rem; padding: 0.85rem 1rem 1rem; }
+      .banner-text { font-size: 0.8rem; text-align: center; }
+      .banner-close { top: 0.5rem; }
     }
   </style>
 </head>
