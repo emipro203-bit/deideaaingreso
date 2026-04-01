@@ -1581,6 +1581,115 @@
     }
     .mobile-link-cta:hover { background: #ff8050; }
 
+    /* ────────────────────────── POPUP MÓVIL ────────────────────────── */
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 600;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .popup-overlay.open { display: flex; }
+
+    .popup-box {
+      background: #0F1F3D;
+      border: 1px solid rgba(255,107,53,0.3);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      padding: 2rem 1.5rem 2.5rem;
+      width: 100%;
+      max-width: 480px;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+      position: relative;
+    }
+
+    .popup-overlay.open .popup-box { transform: translateY(0); }
+
+    .popup-close {
+      position: absolute;
+      top: 1rem; right: 1.25rem;
+      background: none; border: none;
+      color: rgba(255,255,255,0.35);
+      font-size: 1.5rem; cursor: pointer;
+      line-height: 1; padding: 0.25rem;
+      transition: color 0.2s;
+    }
+    .popup-close:hover { color: #fff; }
+
+    .popup-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,107,53,0.12);
+      border: 1px solid rgba(255,107,53,0.3);
+      color: var(--orange);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .popup-badge .dot {
+      width: 5px; height: 5px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .popup-box h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+
+    .popup-box h3 span { color: var(--orange); }
+
+    .popup-box p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .popup-btn {
+      display: block;
+      background: linear-gradient(135deg, var(--orange), #FF9A5C);
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 8px 28px rgba(255,107,53,0.4);
+      margin-bottom: 0.75rem;
+    }
+
+    .popup-skip {
+      display: block;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 100%;
+      padding: 0.25rem;
+    }
+
     /* ────────────────────────── SCROLL REVEAL ────────────────────────── */
 
     .reveal {
@@ -1689,7 +1798,7 @@
       .final-section { padding: 5rem 1.25rem; }
 
       /* Bottom banner */
-      .bottom-banner { flex-direction: column; gap: 0.5rem; padding: 0.85rem 1rem 1rem; }
+      .bottom-banner { display: none !important; }
       .banner-text { font-size: 0.8rem; text-align: center; padding: 0 2rem; }
       .banner-close { top: 0.6rem; right: 0.75rem; }
     }
@@ -2173,6 +2282,18 @@
     <p>© 2026 De Idea a Ingreso · deideaaingreso.com</p>
   </footer>
 
+  <!-- POPUP MÓVIL -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+      <button class="popup-close" id="popup-close">×</button>
+      <div class="popup-badge"><span class="dot"></span>Cupos limitados</div>
+      <h3>Empieza a ganar dinero<br>con <span>IA esta semana</span></h3>
+      <p>Únete a la comunidad privada por WhatsApp y en 4 semanas tendrás tu negocio lanzado — por un solo pago de $997 MXN.</p>
+      <a href="#unirse" class="popup-btn" id="popup-cta">Quiero entrar por $997 MXN →</a>
+      <button class="popup-skip" id="popup-skip">Ahora no</button>
+    </div>
+  </div>
+
   <!-- BOTTOM BANNER -->
   <div class="bottom-banner" id="banner">
     <p class="banner-text"><strong>Cupos limitados disponibles</strong> — Únete hoy por $997 MXN y empieza esta semana</p>
@@ -2181,6 +2302,20 @@
   </div>
 
   <script>
+    // ── Popup móvil ──
+    if (window.innerWidth <= 900) {
+      const popup = document.getElementById('popup');
+      const closePopup = () => popup.classList.remove('open');
+
+      setTimeout(() => popup.classList.add('open'), 1800);
+
+      document.getElementById('popup-close').addEventListener('click', closePopup);
+      document.getElementById('popup-skip').addEventListener('click', closePopup);
+      document.getElementById('popup-cta').addEventListener('click', closePopup);
+
+      popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+    }
+
     // ── Hamburger menu ──
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
