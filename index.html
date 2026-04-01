@@ -1482,6 +1482,9 @@
       transition: color 0.2s;
     }
     .banner-close:hover { color: #fff; }
+    .banner-top-row { display: contents; }
+    .banner-btn-mobile { display: none; }
+    .banner-btn-desktop { display: inline-flex; }
 
     /* ────────────────────────── NAV LINKS ────────────────────────── */
 
@@ -1851,9 +1854,33 @@
       .final-section { padding: 5rem 1.25rem; }
 
       /* Bottom banner */
-      .bottom-banner { display: none !important; }
-      .banner-text { font-size: 0.8rem; text-align: center; padding: 0 2rem; }
-      .banner-close { top: 0.6rem; right: 0.75rem; }
+      .bottom-banner {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom));
+        gap: 0.75rem;
+      }
+      .banner-top-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+      .banner-text { font-size: 0.82rem; padding: 0; flex: 1; }
+      .banner-close { position: static; flex-shrink: 0; margin-top: -2px; }
+      .banner-btn-mobile {
+        display: block;
+        background: var(--orange);
+        color: #fff;
+        text-align: center;
+        padding: 0.85rem;
+        border-radius: var(--radius-md);
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(255,107,53,0.4);
+      }
+      .banner-btn-desktop { display: none; }
     }
   </style>
 </head>
@@ -2365,9 +2392,15 @@
 
   <!-- BOTTOM BANNER -->
   <div class="bottom-banner" id="banner">
-    <p class="banner-text"><strong>Cupos limitados disponibles</strong> — Únete hoy por $997 MXN y empieza esta semana</p>
-    <a href="#unirse" class="nav-cta">Quiero entrar →</a>
-    <button class="banner-close" onclick="document.getElementById('banner').style.display='none'">×</button>
+    <!-- Fila superior en móvil: texto + X -->
+    <div class="banner-top-row">
+      <p class="banner-text"><strong>Cupos limitados disponibles</strong> — Únete hoy por $997 MXN y empieza esta semana</p>
+      <button class="banner-close" onclick="document.getElementById('banner').style.display='none'">×</button>
+    </div>
+    <!-- Botón ancho en móvil -->
+    <a href="#unirse" class="banner-btn-mobile">Quiero entrar →</a>
+    <!-- Botón compacto en desktop -->
+    <a href="#unirse" class="nav-cta banner-btn-desktop">Quiero entrar →</a>
   </div>
 
   <script>
