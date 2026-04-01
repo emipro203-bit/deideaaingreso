@@ -1690,6 +1690,46 @@
       padding: 0.25rem;
     }
 
+    .popup-input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .popup-input::placeholder { color: rgba(255,255,255,0.3); }
+    .popup-input:focus { border-color: rgba(255,107,53,0.5); }
+
+    .popup-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+    }
+    .popup-success-icon { font-size: 2.5rem; }
+    .popup-success h4 { font-size: 1.15rem; font-weight: 800; color: #fff; }
+    .popup-success p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0; }
+    .popup-download {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--orange), #FF9A5C);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 700;
+      box-shadow: 0 8px 28px rgba(255,107,53,0.4);
+      margin-top: 0.25rem;
+    }
+
     /* ────────────────────────── SCROLL REVEAL ────────────────────────── */
 
     .reveal {
@@ -2286,11 +2326,27 @@
   <div class="popup-overlay" id="popup">
     <div class="popup-box">
       <button class="popup-close" id="popup-close">×</button>
-      <div class="popup-badge"><span class="dot"></span>Cupos limitados</div>
-      <h3>Empieza a ganar dinero<br>con <span>IA esta semana</span></h3>
-      <p>Únete a la comunidad privada por WhatsApp y en 4 semanas tendrás tu negocio lanzado — por un solo pago de $997 MXN.</p>
-      <a href="#unirse" class="popup-btn" id="popup-cta">Quiero entrar por $997 MXN →</a>
-      <button class="popup-skip" id="popup-skip">Ahora no</button>
+
+      <!-- ESTADO: FORMULARIO -->
+      <div id="popup-form-state">
+        <div class="popup-badge"><span class="dot"></span>100% gratis</div>
+        <h3>Termina tus tareas<br>en <span>10 minutos</span></h3>
+        <p>Déjame tu correo y te mando gratis los <strong style="color:#fff">15 prompts de IA</strong> que uso para hacer cualquier tarea en minutos.</p>
+        <form id="popup-form">
+          <input type="email" class="popup-input" id="popup-email" placeholder="Tu correo electrónico" required />
+          <button type="submit" class="popup-btn">Quiero los prompts gratis →</button>
+        </form>
+        <button class="popup-skip" id="popup-skip">Ahora no</button>
+      </div>
+
+      <!-- ESTADO: ÉXITO -->
+      <div class="popup-success" id="popup-success-state">
+        <div class="popup-success-icon">🎉</div>
+        <h4>¡Aquí están tus prompts!</h4>
+        <p>Guárdalos, compártelos con tus amigos y úsalos para todas tus materias.</p>
+        <a href="/kit.html" target="_blank" class="popup-download">Abrir los 15 prompts →</a>
+      </div>
+
     </div>
   </div>
 
@@ -2304,16 +2360,34 @@
   <script>
     // ── Popup móvil ──
     if (window.innerWidth <= 900) {
-      const popup = document.getElementById('popup');
-      const closePopup = () => popup.classList.remove('open');
+      const popup        = document.getElementById('popup');
+      const formState    = document.getElementById('popup-form-state');
+      const successState = document.getElementById('popup-success-state');
+      const closePopup   = () => popup.classList.remove('open');
 
       setTimeout(() => popup.classList.add('open'), 1800);
 
       document.getElementById('popup-close').addEventListener('click', closePopup);
       document.getElementById('popup-skip').addEventListener('click', closePopup);
-      document.getElementById('popup-cta').addEventListener('click', closePopup);
-
       popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+
+      document.getElementById('popup-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('popup-email').value;
+
+        // Envía a Formspree — reemplaza TU_ID con tu ID de Formspree
+        try {
+          await fetch('https://formspree.io/f/TU_ID', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+        } catch(_) {}
+
+        // Muestra éxito sin importar el resultado
+        formState.style.display = 'none';
+        successState.style.display = 'flex';
+      });
     }
 
     // ── Hamburger menu ──

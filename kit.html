@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 Prompts para Terminar tus Tareas — De Idea a Ingreso</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #0F1F3D;
+    --navy-light: #162545;
+    --orange: #FF6B35;
+    --orange-dim: rgba(255,107,53,0.15);
+    --orange-glow: rgba(255,107,53,0.08);
+    --white: #FFFFFF;
+    --muted: rgba(255,255,255,0.55);
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .page::after {
+    content: '';
+    position: absolute;
+    bottom: 80px;
+    left: -60px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header {
+    padding: 28px 32px 20px;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--orange-dim);
+    border: 1px solid rgba(255,107,53,0.35);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .title {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--white);
+    max-width: 480px;
+    margin-bottom: 8px;
+  }
+
+  .title span { color: var(--orange); }
+
+  .subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .header-divider {
+    margin-top: 18px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--orange) 0%, rgba(255,107,53,0.3) 40%, transparent 100%);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 9px;
+    padding: 18px 32px 16px;
+  }
+
+  .card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 13px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange), transparent);
+    opacity: 0.5;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 6px;
+  }
+
+  .card-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--orange);
+    background: var(--orange-dim);
+    border-radius: 4px;
+    padding: 2px 6px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .card-emoji { font-size: 13px; line-height: 1; }
+
+  .card-title {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  .card-prompt {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 7px 9px;
+    font-size: 8.5px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.55;
+    font-family: 'DM Sans', monospace;
+    position: relative;
+  }
+
+  .card-prompt::before {
+    content: '›';
+    color: var(--orange);
+    font-weight: 700;
+    margin-right: 4px;
+    font-size: 11px;
+    line-height: 0;
+    vertical-align: middle;
+  }
+
+  .footer {
+    padding: 12px 32px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+
+  .cta-text { font-size: 10px; color: var(--muted); }
+  .cta-text strong { color: var(--white); font-weight: 600; }
+  .cta-text a { color: var(--orange); text-decoration: none; font-weight: 600; }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    text-align: right;
+  }
+  .logo span { color: var(--orange); }
+  .logo-sub {
+    font-size: 7.5px;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="badge">Gratis · De Idea a Ingreso</div>
+    <h1 class="title">15 Prompts para Terminar<br>tus Tareas en <span>10 Minutos</span></h1>
+    <p class="subtitle">Copia, pega y listo. Sin esfuerzo extra.</p>
+    <div class="header-divider"></div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">01</span>
+        <span class="card-emoji">📄</span>
+        <span class="card-title">Resumen Express</span>
+      </div>
+      <div class="card-prompt">Resume en máximo 10 oraciones el tema "[TEMA]" para un alumno de preparatoria. Usa lenguaje simple y añade los 3 puntos más importantes.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">02</span>
+        <span class="card-emoji">🔢</span>
+        <span class="card-title">Matemáticas Paso a Paso</span>
+      </div>
+      <div class="card-prompt">Resuelve este problema de [MATERIA] paso a paso, explicando cada operación como si yo no supiera nada: "[PROBLEMA]".</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">03</span>
+        <span class="card-emoji">📝</span>
+        <span class="card-title">Ensayo Rápido</span>
+      </div>
+      <div class="card-prompt">Escribe un ensayo de [N] párrafos sobre "[TEMA]" con introducción, desarrollo y conclusión. Tono formal, nivel preparatoria.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">04</span>
+        <span class="card-emoji">🧠</span>
+        <span class="card-title">Mapa Mental en Texto</span>
+      </div>
+      <div class="card-prompt">Crea un mapa mental en formato lista con el tema "[TEMA]": idea central, 4 ramas principales y 3 sub-ideas por rama.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">05</span>
+        <span class="card-emoji">✅</span>
+        <span class="card-title">Preguntas de Examen</span>
+      </div>
+      <div class="card-prompt">Genera 10 preguntas de práctica con respuesta sobre "[TEMA]" al nivel de preparatoria. Incluye 2 preguntas de análisis.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">06</span>
+        <span class="card-emoji">📖</span>
+        <span class="card-title">Historia Contextualizada</span>
+      </div>
+      <div class="card-prompt">Explícame el evento histórico "[EVENTO]" con: qué pasó, por qué pasó, quiénes fueron los actores clave y cuáles fueron las consecuencias.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">07</span>
+        <span class="card-emoji">🔬</span>
+        <span class="card-title">Ciencias con Ejemplos</span>
+      </div>
+      <div class="card-prompt">Explica el concepto científico "[CONCEPTO]" con una analogía de la vida cotidiana y un ejemplo práctico fácil de recordar.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">08</span>
+        <span class="card-emoji">🌍</span>
+        <span class="card-title">Traducción + Corrección</span>
+      </div>
+      <div class="card-prompt">Traduce al [IDIOMA] el siguiente texto y corrígelo si tiene errores gramaticales. Después explica las 3 reglas usadas: "[TEXTO]".</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">09</span>
+        <span class="card-emoji">📊</span>
+        <span class="card-title">Tabla Comparativa</span>
+      </div>
+      <div class="card-prompt">Crea una tabla comparativa entre [ELEMENTO A] y [ELEMENTO B] con 5 criterios: [criterio 1], [criterio 2]... Formato: columnas claras.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">10</span>
+        <span class="card-emoji">💬</span>
+        <span class="card-title">Definiciones Clave</span>
+      </div>
+      <div class="card-prompt">Dame las 8 definiciones más importantes del tema "[TEMA]" en lenguaje sencillo. Máximo 2 líneas por definición, con un ejemplo cada una.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">11</span>
+        <span class="card-emoji">✏️</span>
+        <span class="card-title">Corrector de Estilo</span>
+      </div>
+      <div class="card-prompt">Corrige el siguiente texto: mejora la redacción, elimina repeticiones y asegúrate que sea formal. No cambies las ideas principales: "[TEXTO]".</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">12</span>
+        <span class="card-emoji">🎯</span>
+        <span class="card-title">Argumentos para Debate</span>
+      </div>
+      <div class="card-prompt">Dame 5 argumentos sólidos a favor y 5 en contra sobre "[TEMA DE DEBATE]". Cada argumento en máximo 2 oraciones con evidencia o lógica.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">13</span>
+        <span class="card-emoji">📐</span>
+        <span class="card-title">Fórmulas y Teoremas</span>
+      </div>
+      <div class="card-prompt">Lista las 10 fórmulas/teoremas más importantes de "[UNIDAD/MATERIA]". Para cada una: nombre, fórmula, cuándo usarla y un ejemplo numérico.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">14</span>
+        <span class="card-emoji">🎤</span>
+        <span class="card-title">Guión de Exposición</span>
+      </div>
+      <div class="card-prompt">Crea un guión de exposición oral de [N] minutos sobre "[TEMA]". Incluye introducción llamativa, puntos principales y cierre memorable.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-num">15</span>
+        <span class="card-emoji">⚡</span>
+        <span class="card-title">Tarea Express Total</span>
+      </div>
+      <div class="card-prompt">Eres mi tutor de prepa. Mi tarea es: "[DESCRIPCIÓN COMPLETA DE LA TAREA]". Dame la respuesta estructurada, lista para entregar, en tono académico.</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p class="cta-text">
+      ¿Quieres aprender a ganar dinero con IA?<br>
+      <strong>→</strong> <a href="https://deideaaingreso.com">deideaaingreso.com</a>
+    </p>
+    <div class="logo">
+      de idea a <span>ingreso</span>
+      <div class="logo-sub">Aprende · Aplica · Crece</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
